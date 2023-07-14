@@ -1,15 +1,3 @@
-// fn main() {
-//     let mut word = "testi";
-
-//     let len = word.len();
-
-//     if len % 2  == 0 {
-//         word = &word[len / 2 -1..len / 2]; 
-//     } else {
-//         word = &word[len / 2 - 1..len / 2 + 1];
-//     }
-//     println!("{}",word);
-// }
 fn main(){
     let result = merge(&[1,2,3,4,5,6], 2, &[3,5,7,8,9], 4);
     println!("{:?}", result);
