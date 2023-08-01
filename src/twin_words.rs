@@ -1,8 +1,3 @@
-fn main(){
-    let x = twin("silent", "listen");
-    println!("{:?}", x)
-}
-
 fn twin(first_word: &str, second_word: &str) -> bool{
     let mut sorted_first: Vec<char> = first_word.chars().collect();
     sorted_first.sort();
