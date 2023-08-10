@@ -1,18 +1,15 @@
 fn main(){
-    let x = twin("silent", "listen");
-    println!("{:?}", x)
+  create_phone_number(&[1,2,3,4,5,6,7,8,9,0]);
 }
 
-fn twin(first_word: &str, second_word: &str) -> bool{
-    let mut sorted_first: Vec<char> = first_word.chars().collect();
-    sorted_first.sort();
+fn create_phone_number(numbers: &[u8]) -> String {
+  let mut phone_number = String::new();
 
-    let mut sorted_second: Vec<char> = second_word.chars().collect();
-    sorted_second.sort();
+  let first_space: &[u8] = &numbers[0..3];
+  let second_space: &[u8] = &numbers[3..6];
+  let third_space: &[u8] = &numbers[6..];
 
-    if sorted_first == sorted_second {
-        return true;
-    }
-
-    false
+  
+  println!("{:?}", third_space);
+  phone_number
 }
