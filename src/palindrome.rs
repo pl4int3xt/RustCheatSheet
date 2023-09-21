@@ -4,10 +4,9 @@ fn main(){
 }
 
 fn palindrome(word: &str) -> bool{
-    let characters: Vec<char> = word.chars().rev().collect();
-    let reversed_word: String = characters.iter().collect();
+    let rev_word: String = word.chars().rev().collect();
 
-    if word == reversed_word{
+    if word == rev_word{
         true
     } else {
         false
