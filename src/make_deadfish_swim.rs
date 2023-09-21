@@ -16,6 +16,5 @@ fn parse(code: &str) -> Vec<i32> {
         }
     }
 
-    println!("{:?}", result);
-    return result;
+    result
 }

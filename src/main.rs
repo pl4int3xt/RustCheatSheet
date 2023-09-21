@@ -4,9 +4,9 @@ fn main(){
 }
 
 fn palindrome(word: &str) -> bool{
-    let rev_word: String = word.chars().rev().collect();
+    let characters: String = word.chars().rev().collect();
 
-    if word == rev_word{
+    if word == characters{
         true
     } else {
         false
