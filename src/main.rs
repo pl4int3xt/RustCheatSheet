@@ -1,13 +1,20 @@
+use std::collections::HashMap;
+
 fn main(){
-    println!("{:?}", twin("level", "level"));
+    println!("{:?}", letter_count("lskdjgahfkljagfadlkfhsadlhfsdaj fsilhasfhilfaAAAAAAAAA"));
 }
   
-fn twin(first_word: &str, second_word: &str) -> bool{
-    let mut sorted_first: Vec<char> = first_word.chars().collect();
-    sorted_first.sort();
+fn letter_count(s: &str) -> HashMap<char, i32>{
+    let s: Vec<char> = s.chars().flat_map(|c| c.to_uppercase()).collect::<Vec<char>>();
+    let mut result: HashMap<char, i32> = HashMap::new();
 
-    let mut sorted_second: Vec<char> = second_word.chars().collect();
-    sorted_second.sort();
+    for c in s.iter(){
+        if c.is_whitespace(){
+            continue;
+        }
+        let count = result.entry(*c).or_insert(0);
+        *count += 1;
+    }
 
-    sorted_first == sorted_second
+    result
 }
