@@ -6,7 +6,7 @@ fn twin(first_word: &str, second_word: &str) -> bool{
     sorted_second.sort();
 
     if sorted_first == sorted_second {
-        return true;
+        true
     }
 
     false
