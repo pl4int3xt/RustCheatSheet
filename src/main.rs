@@ -1,55 +1,22 @@
-use std::collections::{HashMap, HashSet};
-
 fn main(){
-  println!("{:?}", recover_secret(
-    vec![ 
-  ['t','u','p'],
-  ['w','h','i'],
-  ['t','s','u'],
-  ['a','t','s'],
-  ['h','a','p'],
-  ['t','i','s'],
-  ['w','h','s']]));
+    let result = merge(&[1,2,3,4,5,6], 2, &[3,5,7,8,9], 4);
+    println!("{:?}", result);
 }
 
-fn recover_secret(triplets: Vec<[char; 3]>) -> String {
-    let mut graph: HashMap<char, HashSet<char>> = HashMap::new();
-    let mut indegree: HashMap<char, usize> = HashMap::new();
-    let mut result: Vec<char> = Vec::new();
+fn merge(num1: &[i32], m: usize, num2: &[i32], n: usize) -> Vec<i32>{
+    let mut result: Vec<i32> = Vec::new();
 
-    // Initialize the graph and indegree map
-    for triplet in &triplets {
-        for &c in triplet.iter() {
-            graph.entry(c).or_insert(HashSet::new());
-            indegree.entry(c).or_insert(0);
+    for (index, &value) in num1.into_iter().enumerate(){
+        if index < m {
+            result.push(value);
         }
     }
 
-    // Build the graph and calculate indegree
-    for triplet in &triplets {
-        graph.get_mut(&triplet[0]).unwrap().insert(triplet[1]);
-        graph.get_mut(&triplet[1]).unwrap().insert(triplet[2]);
-        indegree.entry(triplet[1]).and_modify(|e| *e += 1);
-        indegree.entry(triplet[2]).and_modify(|e| *e += 1);
-    }
-
-    // Perform topological sorting
-    let mut stack: Vec<char> = indegree
-        .iter()
-        .filter(|&(_, &indeg)| indeg == 0)
-        .map(|(c, _)| *c)
-        .collect();
-
-    while let Some(node) = stack.pop() {
-        result.push(node);
-        for &neighbor in graph.get(&node).unwrap() {
-            indegree.entry(neighbor).and_modify(|e| *e -= 1);
-            if *indegree.get(&neighbor).unwrap() == 0 {
-                stack.push(neighbor);
-            }
+    for (index, &value) in num2.into_iter().enumerate(){
+        if index < n {
+            result.push(value);
         }
     }
 
-    result.iter().rev().collect()
-    
-  }
+    result
+}
